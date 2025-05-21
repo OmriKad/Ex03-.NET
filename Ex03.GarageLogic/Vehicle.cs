@@ -7,12 +7,20 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class Vehicle
+    public abstract class Vehicle
     {
-        private string m_ModelName { get; set; }
-        private string m_LicenseId { get; set; }
-        private float m_EnergyLeft { get; set; }
+        protected string m_ModelName { get; set; }
+        protected string m_LicenseId { get; set; }
 
-        private List<Wheel> m_Wheels = new List<Wheel>();
+        public abstract float m_EnergyLeft { get; }
+
+        protected List<Wheel> m_Wheels = new List<Wheel>();
+
+        protected Vehicle(string i_LicenseID, string i_ModelName)
+        {
+            m_LicenseId = i_LicenseID;
+            m_ModelName = i_ModelName;
+        }
+
     }
 }

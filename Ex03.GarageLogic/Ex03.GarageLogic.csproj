@@ -36,7 +36,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ElectricBattery.cs" />
+    <Compile Include="ElectricCar.cs" />
+    <Compile Include="ElectricMotorcycle.cs" />
+    <Compile Include="ElectricVehicle.cs" />
+    <Compile Include="FuelCar.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="FuelMotorcycle.cs" />
+    <Compile Include="FuelTank.cs" />
+    <Compile Include="FuelVehicle.cs" />
+    <Compile Include="Truck.cs" />
+    <Compile Include="ValueRangeException.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="VehicleCreator.cs" />
     <Compile Include="Wheel.cs" />
