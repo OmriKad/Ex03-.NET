@@ -1,14 +1,13 @@
 ﻿namespace Ex03.GarageLogic
 {
-    public class FuelCar : FuelVehicle
+    public class FuelCar : Vehicle, Icar
     {
-        private readonly Enums.eVehicleColor r_Color;
-        private readonly Enums.eNumOfDoors r_NumOfDoors;
+        private readonly FuelTank rFuelTank;
+
         public FuelCar(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
         {
             
         }
-
 
     }
 }

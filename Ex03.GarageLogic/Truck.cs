@@ -1,6 +1,6 @@
 ﻿namespace Ex03.GarageLogic
 {
-    public class Truck : FuelVehicle
+    public class Truck : Vehicle
     {
         private readonly bool r_CarryDangeorusMaterial;
         private readonly float r_CargoVolume;

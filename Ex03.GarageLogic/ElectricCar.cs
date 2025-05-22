@@ -1,13 +1,13 @@
 ﻿namespace Ex03.GarageLogic
 {
-    public class ElectricCar : ElectricVehicle
+    public class ElectricCar : Vehicle, ICar
+
     {
-        private readonly Enums.eVehicleColor r_Color;
-        private readonly Enums.eNumOfDoors r_NumOfDoors;
+    private readonly ElectricBattery rElectricBattery;
 
-
-        public ElectricCar(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
-        {
-        }
+    public ElectricCar(string i_LicenseID, string i_ModelName)
+        : base(i_LicenseID, i_ModelName)
+    {
+    }
     }
 }
