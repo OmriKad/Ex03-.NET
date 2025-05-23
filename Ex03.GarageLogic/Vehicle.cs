@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic
 
         public abstract float m_EnergyLeft { get; }
 
-        protected List<Wheel> m_Wheels;
+        public List<Wheel> m_Wheels;
 
         protected Vehicle(string i_LicenseID, string i_ModelName)
         {

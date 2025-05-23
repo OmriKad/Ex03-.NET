@@ -48,7 +48,7 @@ namespace Ex03.ConsoleUI
 
     ____                                                                        
  __/  |_\_                                                                      
-|  _     _``-.                                                                \
+|  _     _``-.                                                                 
 '-(_)---(_)--'   Max                                     .-`""""""""""`-..  Max    
                                                     Max '=()===()=-'         
 
@@ -103,94 +103,6 @@ namespace Ex03.ConsoleUI
 
             }
             return ConvertedUserInput;
-        }
-
-        public void HandleUserInput()
-        {
-            int UserInput = GetInputFromUser();
-            if (UserInput == int.MaxValue)
-            {
-                return;
-            }
-            else
-            {
-                switch (UserInput)
-                {
-                    case 1:
-                        // Load vehicles from the database
-                        System.Console.Clear();
-                        // Example: LoadVehiclesFromDatabase();
-                        break;
-
-                    case 2:
-                        // Check in a new vehicle
-                        System.Console.Clear();
-                        // Example: CheckInVehicle();
-                        break;
-
-                    case 3:
-                        // Display the list of vehicle license plate numbers
-                        System.Console.Clear();
-                        // Example: ShowLicensePlateList();
-                        break;
-
-                    case 4:
-                        // Change or update the state/status of a specific vehicle
-                        System.Console.Clear();
-                        // Example: UpdateVehicleStatus();
-                        break;
-
-                    case 5:
-                        // Fill/inflate the air pressure in all wheels of a selected vehicle
-                        System.Console.Clear();
-                        // Example: InflateTires();
-                        break;
-
-                    case 6:
-                        // Fuel a selected gas-powered vehicle
-                        System.Console.Clear();
-                        // Example: RefuelVehicle();
-                        break;
-
-                    case 7:
-                        // Charge a selected electric vehicle
-                        System.Console.Clear();
-                        // Example: RechargeElectricVehicle();
-                        break;
-
-                    case 8:
-                        // Show all vehicles and their details currently in the database
-                        System.Console.Clear();
-                        // Example: ShowAllVehicles();
-                        break;
-
-                    case 9:
-                        // Exit the application
-                        ExitProgram();
-                        break;
-
-                    default:
-                        // Handle invalid menu selection
-                        // Example: Console.WriteLine("Invalid option. Please try again.");
-                        break;
-                }
-
-            }
-
-
-
-        }
-
-        private void ExitProgram()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void LoadVehiclesFromDatabase()
-        {
-            m_MessageStorage.PrintUserPromptForOption2();
-            string Path = System.Console.ReadLine();
-            string[] Database = File.ReadAllLines(Path);
         }
 
 
@@ -264,10 +176,6 @@ namespace Ex03.ConsoleUI
             return Path;
         }
 
-        internal void CheckInVehicle()
-        {
-            throw new NotImplementedException();
-        }
 
         public void DisplayLicensePlates(List<string> plates)
         {
@@ -289,6 +197,19 @@ namespace Ex03.ConsoleUI
             System.Console.WriteLine(m_CarArt);
             Thread.Sleep(1000);
             System.Console.Clear();
+        }
+        public string GetLicenseID()
+        {
+            string LicenseID = System.Console.ReadLine();
+            if (LicenseID.All(char.IsDigit))
+            {
+                return LicenseID;
+
+            }
+            else
+            {
+                return null; // error handling
+            }
         }
 
 
