@@ -12,6 +12,7 @@
 
         public enum eLicenseType
         {
+            None,
             A,
             A2,
             AB,
@@ -20,6 +21,7 @@
 
         public enum eVehicleColor
         {
+            None,
             Yellow,
             White,
             Black,
@@ -28,6 +30,7 @@
 
         public enum eNumOfDoors
         {
+            None = 0,
             Two = 2,
             Three,
             Four,

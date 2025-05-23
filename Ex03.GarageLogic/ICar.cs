@@ -2,7 +2,7 @@
 {
     public interface ICar
     {
-        private readonly Enums.eNumOfDoors;
-
+        Enums.eVehicleColor m_Color { get; }
+        Enums.eNumOfDoors m_NumOfDoors { get; }
     }
 }

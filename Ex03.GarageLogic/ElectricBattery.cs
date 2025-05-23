@@ -17,5 +17,10 @@
             }
             m_CurrentChargeAmount += i_Amount;
         }
+
+        public float EnergyLeft()
+        {
+            return (m_CurrentChargeAmount / r_MaxChargeAmount) * 100f;
+        }
     }
 }
