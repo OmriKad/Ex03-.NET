@@ -21,6 +21,10 @@ namespace Ex03.GarageLogic
             {
                 return r_ElectricBattery.EnergyLeft();
             }
+            set
+            {
+                r_ElectricBattery.m_CurrentChargeAmount = value * r_ElectricBattery.m_CurrentChargeAmount / 100;
+            }
         }
     }
 }

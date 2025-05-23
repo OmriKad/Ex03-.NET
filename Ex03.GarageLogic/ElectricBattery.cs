@@ -2,8 +2,8 @@
 {
     public class ElectricBattery
     {
-        internal float m_CurrentChargeAmount;
-        private readonly float r_MaxChargeAmount;
+        public float m_CurrentChargeAmount;
+        public float r_MaxChargeAmount;
         public ElectricBattery(float i_MaxChargeAmount)
         {
             r_MaxChargeAmount = i_MaxChargeAmount;
