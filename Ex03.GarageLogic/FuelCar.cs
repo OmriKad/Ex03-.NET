@@ -23,7 +23,7 @@
             }
             set
             {
-                r_FuelTank.Refuel(value * r_FuelTank.r_MaxFuelAmount / 100);
+                r_FuelTank.Refuel(value * r_FuelTank.r_MaxFuelAmount / 100, r_FuelTank.r_FuelType);
             }
         }
     }

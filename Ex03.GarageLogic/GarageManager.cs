@@ -69,6 +69,19 @@ namespace Ex03.GarageLogic
             return LicensePlates;
         }
 
+        public List<string> GetLicensePlatesByStatus(Enums.eVehicleStatus status)
+        {
+            List<string> LicensePlates = new List<string>();
+            foreach (Vehicle vehicle in r_LoadedVehicles.Values)
+            {
+                if (vehicle.m_Status == status)
+                {
+                    LicensePlates.Add(vehicle.m_LicenseId);
+                }
+            }
+            return LicensePlates;
+        }
+
         public void InflateTires(string LicenseId)
         {
             Vehicle vehicle = r_LoadedVehicles[LicenseId];
@@ -168,8 +181,8 @@ namespace Ex03.GarageLogic
                     break;
                 case "Truck":
                     ITruck truck = (ITruck)vehicle;
-                    truck.m_CargoVolume = float.Parse(parts[8]);
-                    truck.m_CarryDangeorusMaterial = bool.Parse(parts[9]);
+                    truck.m_CarryDangeorusMaterial = bool.Parse(parts[8]);
+                    truck.m_CargoVolume = float.Parse(parts[9]);
                     break;
             }
           

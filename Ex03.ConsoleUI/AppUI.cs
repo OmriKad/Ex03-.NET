@@ -167,6 +167,33 @@ namespace Ex03.ConsoleUI
             return nextAppState;
         }
 
+        public bool GetIfFilter()
+        {
+            bool Result;
+            while (true)
+            {
+                System.Console.WriteLine("Do you want to filter the vehicles by state?");
+                System.Console.WriteLine("1. yes");
+                System.Console.WriteLine("2. no");
+                string UserInput = Console.ReadLine();
+                if (UserInput == "1")
+                {
+                    Result = true;
+                    break;
+                }
+                else if (UserInput == "2")
+                {
+                    Result = false;
+                    break;
+                }
+                else
+                {
+                    System.Console.WriteLine("Invalid input. Please enter 1 or 2.");
+                }
+            }
+            return Result;
+        }
+
 
         public string GetDatabasePath()
         {
@@ -183,7 +210,6 @@ namespace Ex03.ConsoleUI
             {
                 System.Console.WriteLine(plate);
             }
-
         }
 
         //public void ShowVehicleStatus(Vehicle modifiedVehicle)
@@ -212,8 +238,38 @@ namespace Ex03.ConsoleUI
             }
         }
 
+        internal Enums.eVehicleStatus GetRequiredState()
+        {
+            Enums.eVehicleStatus state;
+            while (true)
+            {
+                System.Console.WriteLine("Please enter the state you want to filter by:");
+                System.Console.WriteLine("1. InRepair");
+                System.Console.WriteLine("2. Fixed");
+                System.Console.WriteLine("3. Paid");
+                string UserInput = Console.ReadLine();
+                if (UserInput == "1")
+                {
+                    state = Enums.eVehicleStatus.InRepair;
+                    break;
+                }
+                else if (UserInput == "2")
+                {
+                    state = Enums.eVehicleStatus.Fixed;
+                    break;
+                }
+                else if (UserInput == "3")
+                {
+                    state = Enums.eVehicleStatus.Paid;
+                    break;
+                }
+                else
+                {
+                    System.Console.WriteLine("Invalid input. Please enter 1, 2, or 3.");
+                }
+            }
 
-
-
+            return state;
+        }
     }
 }

@@ -65,6 +65,7 @@
     <Compile Include="ICar.cs" />
     <Compile Include="IMotorcycle.cs" />
     <Compile Include="ITruck.cs" />
+    <Compile Include="Owner.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="ValueRangeException.cs" />
     <Compile Include="Vehicle.cs" />

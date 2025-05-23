@@ -4,7 +4,7 @@ namespace Ex03.GarageLogic
 {
     public class FuelTank
     {
-        private readonly Enums.eFuelType r_FuelType;
+        public readonly Enums.eFuelType r_FuelType;
         public float m_CurrentFuelAmount { get; set; }
         public float r_MaxFuelAmount { get; set; }
 
