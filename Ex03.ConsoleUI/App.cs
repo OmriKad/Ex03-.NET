@@ -82,12 +82,12 @@ namespace Ex03.ConsoleUI
                         break;
 
                     case Enums.eAppState.RefuelVehicle:
-                        //m_GarageManager.RefuelVehicle(m_AppUI.GetLicenseID(), m_AppUI.GetFuelType(), m_AppUI.GetFuelAmount()); // needs to be changed
+                        m_GarageManager.RefuelVehicle(m_AppUI.GetLicenseID(), m_AppUI.GetFuelType(),m_AppUI.GetEnergySourceAmount()); // needs to be changed
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
                     case Enums.eAppState.RechargeElectricVehicle:
-                        //m_GarageManager.RechargeElectricVehicle(m_AppUI.GetLicenseID(), m_AppUI.GetFuelAmount()); // needs to be changed
+                        m_GarageManager.RechargeElectricVehicle(m_AppUI.GetLicenseID(),m_AppUI.GetFuelType(),m_AppUI.GetEnergySourceAmount()); // needs to be changed
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
