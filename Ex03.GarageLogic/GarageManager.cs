@@ -15,6 +15,50 @@ namespace Ex03.GarageLogic
             r_LoadedVehicles = new Dictionary<string, Vehicle>();
         }
 
+        public void CheckInVehicle(string LicenseId)
+        {
+            if (r_LoadedVehicles.ContainsKey(LicenseId))
+            {
+                System.Console.WriteLine("This vehicle already exists in this garage.");
+
+            }
+            else
+            {
+                // vehicle creation missing here
+                System.Console.WriteLine("Please enter vehicle type:");
+                string type = System.Console.ReadLine();
+                if (type.Contains("eletric"))
+                {
+                    System.Console.WriteLine("Please enter the energy presentage left : ");
+
+                }
+                else
+                {
+                    System.Console.WriteLine("Please enter the fuel presentage left : ");
+
+                }
+                string EnergyLeft = System.Console.ReadLine();
+                System.Console.WriteLine("Please enter the air pressure currently in your wheels :  ");
+                // wheel filling missing
+
+                //if(Vehicle is car)
+                System.Console.WriteLine("Please enter the color of your vehicle :  ");
+                string color = System.Console.ReadLine();
+
+
+                //if(vehicle is motorcycle)
+                System.Console.WriteLine("Please enter your License type:  ");
+                string LicenseType = System.Console.ReadLine();
+
+                //(if vehicle is truck)
+                System.Console.WriteLine("does your vehicle contains hazardous materials? y/n  ");
+                string hazardousMaterials = System.Console.ReadLine();
+
+
+
+            }
+        }
+
         public List<string> GetAllLicensePlates()
         {
             List<string> LicensePlates = new List<string>();
@@ -23,6 +67,18 @@ namespace Ex03.GarageLogic
                 LicensePlates.Add(vehicle.m_LicenseId);
             }
             return LicensePlates;
+        }
+
+        public void InflateTires(string LicenseId)
+        {
+            Vehicle vehicle = r_LoadedVehicles[LicenseId];
+            //foreach (Wheel wheel in vehicle.m_Wheels)
+            //{
+                
+
+            //}
+
+
         }
 
         public void LoadDatabase(string FilePath)
@@ -45,6 +101,31 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public void ModifyVehicleStatus(string LicenseId)
+        {
+            Vehicle vehicle = r_LoadedVehicles[LicenseId];
+
+
+        }
+
+        public void RechargeElectricVehicle(string LicenseId)
+        {
+            Vehicle vehicle = r_LoadedVehicles[LicenseId];
+            //recharge needed
+        }
+
+        public void RefuelVehicle(string LicenseId)
+        {
+            Vehicle vehicle = r_LoadedVehicles[LicenseId];
+            //refuel needed
+
+        }
+
+        public void ShowAllVehicles()
+        {
+            throw new NotImplementedException();
+        }
+      
         private Vehicle parseLineToVehicle(string i_Line)
         {
             string[] parts = i_Line.Split(',');
@@ -92,6 +173,7 @@ namespace Ex03.GarageLogic
                     truck.m_CarryDangeorusMaterial = bool.Parse(parts[9]);
                     break;
             }
+          
             return vehicle;
         }
     }

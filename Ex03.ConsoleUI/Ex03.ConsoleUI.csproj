@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ex03.GarageLogic\Ex03.GarageLogic.csproj">
-      <Project>{96220106-9352-4a04-ad97-ac3a1588c174}</Project>
+      <Project>{96220106-9352-4A04-AD97-AC3A1588C174}</Project>
       <Name>Ex03.GarageLogic</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Ex03.GarageLogic;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
 {
@@ -24,6 +25,7 @@ namespace Ex03.ConsoleUI
 
         public void Run()
         {
+            m_AppUI.PrintCarArt();
             while (m_CurrentState != Enums.eAppState.Exit)
             {
                 switch (m_CurrentState)
@@ -34,13 +36,19 @@ namespace Ex03.ConsoleUI
                         break;
 
                     case Enums.eAppState.LoadDatabase:
-                        string dbPath = m_AppUI.PromptForDatabasePath();
+                        string dbPath = m_AppUI.GetDatabasePath();
+                        if (dbPath == "q")
+                        {
+                            m_CurrentState = Enums.eAppState.Menu;
+                            System.Console.Clear();
+                            break;
+                        }
                         m_GarageManager.LoadDatabase(dbPath);
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
                     case Enums.eAppState.CheckInVehicle:
-                        m_AppUI.CheckInVehicle();
+                        m_GarageManager.CheckInVehicle(m_AppUI.GetLicenseID()); // needs to be changed
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
@@ -51,34 +59,34 @@ namespace Ex03.ConsoleUI
                         break;
 
                     case Enums.eAppState.UpdateVehicleStatus:
-                        m_AppUI.UpdateVehicleStatus(m_GarageManager);
+                        //Vehicle ModifiedVehicle
+                        m_GarageManager.ModifyVehicleStatus(m_AppUI.GetLicenseID());
+                        //m_AppUI.ShowVehicleStatus(); will be garage manager function
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
                     case Enums.eAppState.InflateTires:
-                        m_AppUI.InflateTires(m_GarageManager);
+                        m_GarageManager.InflateTires(m_AppUI.GetLicenseID());// needs to be changed
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
                     case Enums.eAppState.RefuelVehicle:
-                        m_AppUI.RefuelVehicle(m_GarageManager);
+                        m_GarageManager.RefuelVehicle(m_AppUI.GetLicenseID()); // needs to be changed
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
-                    case Enums.eAppState.RechargeVehicle:
-                        m_AppUI.RechargeElectricVehicle(m_GarageManager);
+                    case Enums.eAppState.RechargeElectricVehicle:
+                        m_GarageManager.RechargeElectricVehicle(m_AppUI.GetLicenseID()); // needs to be changed
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
                     case Enums.eAppState.ShowAllVehicles:
-                        m_AppUI.ShowAllVehicles(m_GarageManager);
+                        m_GarageManager.ShowAllVehicles();  // needs to be changed
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
                 }
             }
-
-            //m_AppUI.PrintExitMessage();
         }
-
     }
+
 }
