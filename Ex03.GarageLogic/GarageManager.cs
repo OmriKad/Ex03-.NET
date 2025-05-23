@@ -45,9 +45,9 @@ namespace Ex03.GarageLogic
             }
         }
 
-        private Vehicle parseLineToVehicle(string line)
+        private Vehicle parseLineToVehicle(string i_Line)
         {
-            string[] parts = line.Split(',');
+            string[] parts = i_Line.Split(',');
             string vehicleType = parts[0];
             string licensePlate = parts[1];
             string modelName = parts[2];
@@ -69,16 +69,29 @@ namespace Ex03.GarageLogic
 
             Vehicle vehicle = VehicleCreator.CreateVehicle(vehicleType, licensePlate, modelName);
             vehicle.SetWheelsManufactureName(tierModel);
-            switch (vehicleType)
+            vehicle.SetTirePressureForAllWheels(float.Parse(currAirPressure));
+            vehicle.m_EnergyLeft = float.Parse(energyPercentage);
+
+            switch(vehicleType)
             {
                 case "FuelMotorcycle":
-                    string licenseType = parts[8];
-                    string engineSize = parts[9];
-                    
-
+                case "ElectricMotorcycle":
+                    IMotorcycle motorcycle = (IMotorcycle)vehicle;
+                    motorcycle.m_LicenseType = (Enums.eLicenseType)Enum.Parse(typeof(Enums.eLicenseType), parts[8]);
+                    motorcycle.m_EngineSize = int.Parse(parts[9]);
+                    break;
+                case "FuelCar":
+                case "ElectricCar":
+                    ICar car = (ICar)vehicle;
+                    car.m_Color = (Enums.eVehicleColor)Enum.Parse(typeof(Enums.eVehicleColor), parts[8]);
+                    car.m_NumOfDoors = (Enums.eNumOfDoors)Enum.Parse(typeof(Enums.eLicenseType), parts[9]);
+                    break;
+                case "Truck":
+                    ITruck truck = (ITruck)vehicle;
+                    truck.m_CargoVolume = float.Parse(parts[8]);
+                    truck.m_CarryDangeorusMaterial = bool.Parse(parts[9]);
+                    break;
             }
-
-
             return vehicle;
         }
     }

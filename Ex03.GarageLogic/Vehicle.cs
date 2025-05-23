@@ -12,9 +12,9 @@ namespace Ex03.GarageLogic
         public readonly string m_ModelName;
         public readonly string m_LicenseId;
 
-        public abstract float m_EnergyLeft { get; }
+        public abstract float m_EnergyLeft { get; set; }
 
-        protected List<Wheel> m_Wheels;
+        public List<Wheel> m_Wheels;
 
         protected Vehicle(string i_LicenseID, string i_ModelName)
         {
@@ -36,6 +36,19 @@ namespace Ex03.GarageLogic
             foreach (Wheel wheel in m_Wheels)
             {
                 wheel.m_ManufacturerName = i_ManufactureName;
+            }
+        }
+
+        public void SetSpecificWheelTirePressure(int i_TireNumber, float i_TirePressure)
+        {
+            m_Wheels[i_TireNumber].Inflate((i_TirePressure));
+        }
+
+        public void SetTirePressureForAllWheels(float i_TirePressure)
+        {
+            foreach(Wheel wheel in m_Wheels)
+            {
+                wheel.Inflate(i_TirePressure);
             }
         }
     }
