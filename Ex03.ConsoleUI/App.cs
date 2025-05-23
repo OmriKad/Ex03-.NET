@@ -53,20 +53,31 @@ namespace Ex03.ConsoleUI
                         break;
 
                     case Enums.eAppState.ShowLicensePlates:
-                        List<string> plates = m_GarageManager.GetAllLicensePlates();
+                        List<string> plates;
+                        if (!m_AppUI.GetIfFilter())
+                        {
+                           plates = m_GarageManager.GetAllLicensePlates();
+                        }
+                        else
+                        {
+                            Enums.eVehicleStatus state = m_AppUI.GetRequiredState();
+                            plates = m_GarageManager.GetLicensePlatesByStatus(state);
+                        }
+
                         m_AppUI.DisplayLicensePlates(plates);
                         m_CurrentState = Enums.eAppState.Menu;
+                        Console.ReadLine();
                         break;
 
                     case Enums.eAppState.UpdateVehicleStatus:
                         //Vehicle ModifiedVehicle
-                        m_GarageManager.ModifyVehicleStatus(m_AppUI.GetLicenseID());
+                        //m_GarageManager.ModifyVehicleStatus(m_AppUI.GetLicenseID(), m_AppUI.GetNewState());
                         //m_AppUI.ShowVehicleStatus(); will be garage manager function
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
                     case Enums.eAppState.InflateTires:
-                        m_GarageManager.InflateTires(m_AppUI.GetLicenseID());// needs to be changed
+                        m_GarageManager.InflateTires(m_AppUI.GetLicenseID());
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
@@ -88,5 +99,4 @@ namespace Ex03.ConsoleUI
             }
         }
     }
-
 }

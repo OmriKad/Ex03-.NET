@@ -9,6 +9,8 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
+        public Owner m_Owner { get; set; }
+        public Enums.eVehicleStatus m_Status { get; set; }
         public readonly string m_ModelName;
         public readonly string m_LicenseId;
 
@@ -18,6 +20,7 @@ namespace Ex03.GarageLogic
 
         protected Vehicle(string i_LicenseID, string i_ModelName)
         {
+            m_Status = Enums.eVehicleStatus.InRepair;
             m_LicenseId = i_LicenseID;
             m_ModelName = i_ModelName;
             m_Wheels = new List<Wheel>();

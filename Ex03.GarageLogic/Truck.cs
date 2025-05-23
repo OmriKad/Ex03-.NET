@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
 
         public Truck(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
         {
-            r_FuelTank = new FuelTank(Enums.eFuelType.Soler, 135);
+            r_FuelTank = new FuelTank(Enums.eFuelType.Soler, 135f);
             AddWheels(12, 27f);
             m_CarryDangeorusMaterial = false;
             m_CargoVolume = 0f;
@@ -24,7 +24,7 @@ namespace Ex03.GarageLogic
             }
             set
             {
-                r_FuelTank.Refuel(value * r_FuelTank.r_MaxFuelAmount / 100);
+                r_FuelTank.Refuel(value * r_FuelTank.r_MaxFuelAmount / 100, r_FuelTank.r_FuelType);
             }
         }
     }

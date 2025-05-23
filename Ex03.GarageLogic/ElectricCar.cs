@@ -23,6 +23,7 @@
           set
           {
               r_ElectricBattery.Recharge(value * r_ElectricBattery.m_CurrentChargeAmount / 100);
+          }
       }
     }
 }
