@@ -2,7 +2,7 @@
 {
     public interface ICar
     {
-        private readonly Enums.eNumOfDoors;
+        private readonly Enums.eNumOfDoors
 
     }
 }

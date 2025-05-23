@@ -9,8 +9,8 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
-        protected string m_ModelName { get; set; }
-        protected string m_LicenseId { get; set; }
+        public readonly string m_ModelName;
+        public readonly string m_LicenseId;
 
         public abstract float m_EnergyLeft { get; }
 

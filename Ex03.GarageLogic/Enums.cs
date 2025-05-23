@@ -40,5 +40,19 @@
             Fixed,
             Paid
         }
+
+        public enum eAppState
+        {
+            Menu = 1 ,
+            LoadDatabase ,
+            CheckInVehicle,
+            ShowLicensePlates,
+            UpdateVehicleStatus,
+            InflateTires,
+            RefuelVehicle,
+            RechargeElectricVehicle,
+            ShowAllVehicles,
+            Exit
+        }
     }
 }
