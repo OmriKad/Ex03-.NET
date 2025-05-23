@@ -14,13 +14,21 @@ namespace Ex03.GarageLogic
 
         public abstract float m_EnergyLeft { get; }
 
-        protected List<Wheel> m_Wheels = new List<Wheel>();
+        protected List<Wheel> m_Wheels;
 
         protected Vehicle(string i_LicenseID, string i_ModelName)
         {
             m_LicenseId = i_LicenseID;
             m_ModelName = i_ModelName;
+            m_Wheels = new List<Wheel>();
         }
 
+        public void AddWheels(int i_numOfWheelsToAdd, float i_MaxAirPressure)
+        {
+            for (int i = 0; i < i_numOfWheelsToAdd; i++)
+            {
+                m_Wheels.Add(new Wheel(0, i_MaxAirPressure));
+            }
+        }
     }
 }
