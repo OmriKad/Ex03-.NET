@@ -25,6 +25,11 @@ namespace Ex03.GarageLogic
             return LicensePlates;
         }
 
+        public void InflateTires()
+        {
+            throw new NotImplementedException();
+        }
+
         public void LoadDatabase(string FilePath)
         {
             string[] lines = System.IO.File.ReadAllLines(FilePath);
@@ -40,6 +45,30 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public void ModifyVehicleStatus()
+        {
+            
+            System.Console.WriteLine("Please enter a vehicle license plate id:");
+
+            
+
+        }
+
+        public void RechargeElectricVehicle(GarageManager m_GarageManager)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RefuelVehicle()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowAllVehicles()
+        {
+            throw new NotImplementedException();
+        }
+
         private Vehicle parseLineToVehicle(string line)
         {
             string[] parts = line.Split(',');
@@ -49,7 +78,12 @@ namespace Ex03.GarageLogic
 
             //type error handling
 
-            Vehicle vehicle = VehicleCreator.CreateVehicle(type,license,model);
+            Vehicle vehicle = VehicleCreator.CreateVehicle(type, license, model);
+
+
+
+
+
             return vehicle;
         }
     }

@@ -13,7 +13,7 @@ namespace Ex03.ConsoleUI
     public class AppUI
     {
         private Messages m_MessageStorage = new Messages();
-        static string CarArt = @"                                   __..--""""""""           """"""""--..__              
+        private string m_CarArt = @"                                   __..--""""""""           """"""""--..__              
                                           _.-""""""""""""""""""""""-----...      ______ `.            
                                        .-""                      l ,-""""    \ ""-.`.          
                                     .-""                         ; ;        ;   \ """"--.._   
@@ -80,8 +80,6 @@ namespace Ex03.ConsoleUI
 
         public void DisplayMenu()
         {
-            System.Console.WriteLine(CarArt);
-            Thread.Sleep(1000);
             System.Console.Clear();
             System.Console.WriteLine(MenuRepresentation);
 
@@ -258,8 +256,10 @@ namespace Ex03.ConsoleUI
         }
 
 
-        public string PromptForDatabasePath()
+        public string GetDatabasePath()
         {
+            System.Console.WriteLine("Please enter a path for the database directory : ");
+            System.Console.WriteLine("enter q to return to the menu");
             string Path = Console.ReadLine();
             return Path;
         }
@@ -268,5 +268,31 @@ namespace Ex03.ConsoleUI
         {
             throw new NotImplementedException();
         }
+
+        public void DisplayLicensePlates(List<string> plates)
+        {
+            foreach (string plate in plates)
+            {
+                System.Console.WriteLine(plate);
+            }
+
+        }
+
+        //public void ShowVehicleStatus(Vehicle modifiedVehicle)
+        //{
+        //    System.Console.WriteLine($"License Id : {modifiedVehicle.m_LicenseId}");
+        //    System.Console.WriteLine($"Model Name : {modifiedVehicle.m_ModelName}");
+        //}
+
+        public void PrintCarArt()
+        {
+            System.Console.WriteLine(m_CarArt);
+            Thread.Sleep(1000);
+            System.Console.Clear();
+        }
+
+
+
+
     }
 }
