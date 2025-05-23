@@ -17,7 +17,7 @@
         {
             if (m_CurrentFuelAmount + i_Amount > r_MaxFuelAmount)
             {
-                throw new ArgumentException("Cannot refuel beyond max fuel amount");
+                throw new ValueRangeException(0f, r_MaxFuelAmount);
             }
             m_CurrentFuelAmount += i_Amount;
         }
