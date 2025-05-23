@@ -30,5 +30,13 @@ namespace Ex03.GarageLogic
                 m_Wheels.Add(new Wheel(0, i_MaxAirPressure));
             }
         }
+
+        public void SetWheelsManufactureName(string i_ManufactureName)
+        {
+            foreach (Wheel wheel in m_Wheels)
+            {
+                wheel.m_ManufacturerName = i_ManufactureName;
+            }
+        }
     }
 }

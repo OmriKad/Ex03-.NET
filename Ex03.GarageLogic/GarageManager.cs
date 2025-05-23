@@ -35,6 +35,11 @@ namespace Ex03.GarageLogic
                     continue;
                 }
 
+                if (line == "*****")
+                {
+                    break;
+                }
+
                 Vehicle vehicle = parseLineToVehicle(line);
                 r_LoadedVehicles[vehicle.m_LicenseId] = vehicle;
             }
@@ -43,13 +48,37 @@ namespace Ex03.GarageLogic
         private Vehicle parseLineToVehicle(string line)
         {
             string[] parts = line.Split(',');
-            string type = parts[0];
-            string license = parts[1];
-            string model = parts[2];
+            string vehicleType = parts[0];
+            string licensePlate = parts[1];
+            string modelName = parts[2];
+            string energyPercentage = parts[3];
+            string tierModel = parts[4];
+            string currAirPressure = parts[5];
+            string ownerName = parts[6];
+            string ownerPhone = parts[7];
 
-            //type error handling
+            if (parts.Length < VehicleCreator.SupportedTypes.Count)
+            {
+                throw new ValueRangeException(0f, VehicleCreator.SupportedTypes.Count);
+            }
 
-            Vehicle vehicle = VehicleCreator.CreateVehicle(type,license,model);
+            if (!VehicleCreator.SupportedTypes.Contains(vehicleType))
+            {
+                throw new ArgumentException($"Vehicle type {vehicleType} is not supported.");
+            }
+
+            Vehicle vehicle = VehicleCreator.CreateVehicle(vehicleType, licensePlate, modelName);
+            vehicle.SetWheelsManufactureName(tierModel);
+            switch (vehicleType)
+            {
+                case "FuelMotorcycle":
+                    string licenseType = parts[8];
+                    string engineSize = parts[9];
+                    
+
+            }
+
+
             return vehicle;
         }
     }
