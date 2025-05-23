@@ -101,20 +101,20 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void ModifyVehicleStatus(string LicenseId)
+        public void ModifyVehicleStatus(string LicenseId, Enums.eVehicleStatus VehicleStatus)
         {
             Vehicle vehicle = r_LoadedVehicles[LicenseId];
 
 
         }
 
-        public void RechargeElectricVehicle(string LicenseId)
+        public void RechargeElectricVehicle(string LicenseId, Enums.eFuelType FuelType, int FuelAmount)
         {
             Vehicle vehicle = r_LoadedVehicles[LicenseId];
             //recharge needed
         }
 
-        public void RefuelVehicle(string LicenseId)
+        public void RefuelVehicle(string LicenseId,Enums.eFuelType FuelType,int FuelAmount)
         {
             Vehicle vehicle = r_LoadedVehicles[LicenseId];
             //refuel needed
