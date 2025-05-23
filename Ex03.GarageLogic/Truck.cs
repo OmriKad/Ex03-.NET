@@ -22,6 +22,10 @@ namespace Ex03.GarageLogic
             {
                 return r_FuelTank.EnergyLeft();
             }
+            set
+            {
+                r_FuelTank.Refuel(value * r_FuelTank.r_MaxFuelAmount / 100);
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Ex03.GarageLogic
             }
             set
             {
-                r_ElectricBattery.m_CurrentChargeAmount = value * r_ElectricBattery.m_CurrentChargeAmount / 100;
+                r_ElectricBattery.Recharge(value * r_ElectricBattery.m_CurrentChargeAmount / 100);
             }
         }
     }
