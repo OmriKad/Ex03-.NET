@@ -114,11 +114,15 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void ModifyVehicleStatus(string LicenseId, Enums.eVehicleStatus VehicleStatus)
+        public void ModifyVehicleStatus(string i_LicenseId, Enums.eVehicleStatus i_VehicleStatus)
         {
-            Vehicle vehicle = r_LoadedVehicles[LicenseId];
+            if(!CheckIfPlateInGarage(i_LicenseId))
+            {
+                throw new ArgumentException($"Vehicle with license plate {i_LicenseId} not found in the garage.");
+            }
 
-
+            Vehicle vehicle = r_LoadedVehicles[i_LicenseId];
+            vehicle.m_Status = i_VehicleStatus;
         }
 
         public void RechargeElectricVehicle(string LicenseId, Enums.eFuelType FuelType, int FuelAmount)
@@ -133,9 +137,9 @@ namespace Ex03.GarageLogic
             vehicle.m_EnergyLeft = (100 - vehicle.m_EnergyLeft);
         }
 
-        public void ShowAllVehicles()
+        public bool CheckIfPlateInGarage(string i_Plate)
         {
-            throw new NotImplementedException();
+            return r_LoadedVehicles.ContainsKey(i_Plate);
         }
       
         private Vehicle parseLineToVehicle(string i_Line)
@@ -161,6 +165,8 @@ namespace Ex03.GarageLogic
             }
 
             Vehicle vehicle = VehicleCreator.CreateVehicle(vehicleType, licensePlate, modelName);
+            Owner owner = new Owner(ownerName, ownerPhone);
+            vehicle.m_Owner = owner;
             vehicle.SetWheelsManufactureName(tierModel);
             vehicle.SetTirePressureForAllWheels(float.Parse(currAirPressure));
             vehicle.m_EnergyLeft = float.Parse(energyPercentage);
@@ -187,6 +193,28 @@ namespace Ex03.GarageLogic
             }
           
             return vehicle;
+        }
+
+        public List<string> GetSpecificVehicleData(string i_Plate)
+        {
+            List<string> vehicleData = new List<string>();
+
+            if (r_LoadedVehicles.ContainsKey(i_Plate))
+            {
+                Vehicle vehicle = r_LoadedVehicles[i_Plate];
+                vehicleData.Add($"License Plate: {vehicle.m_LicenseId}");
+                vehicleData.Add($"Model Name: {vehicle.m_ModelName}");
+                vehicleData.Add($"Owner Name: {vehicle.m_Owner.m_Name}");
+                vehicleData.Add($"Owner Phone: {vehicle.m_Owner.m_PhoneNumber}");
+                vehicleData.Add($"Vehicle Status: {vehicle.m_Status}");
+                vehicleData.Add($"Energy Left: {vehicle.m_EnergyLeft}");
+            }
+            else
+            {
+                throw new ArgumentException($"Vehicle with license plate {i_Plate} not found in the garage.");
+            }
+
+            return vehicleData;
         }
     }
 }

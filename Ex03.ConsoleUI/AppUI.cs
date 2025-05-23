@@ -204,11 +204,12 @@ namespace Ex03.ConsoleUI
         }
 
 
-        public void DisplayLicensePlates(List<string> plates)
+        public void DisplayData(List<string> i_DataList)
         {
-            foreach (string plate in plates)
+            System.Console.Clear();
+            foreach (string data in i_DataList)
             {
-                System.Console.WriteLine(plate);
+                System.Console.WriteLine(data);
             }
         }
 
@@ -226,8 +227,10 @@ namespace Ex03.ConsoleUI
         }
         public string GetLicenseID()
         {
+            Console.WriteLine("Please enter the License ID:");
             string LicenseID = System.Console.ReadLine();
-            if (LicenseID.All(char.IsDigit))
+            string LicenseIDWithoutSpaces = LicenseID.Replace("-", "");
+            if (LicenseIDWithoutSpaces.All(char.IsDigit))
             {
                 return LicenseID;
 
@@ -270,6 +273,44 @@ namespace Ex03.ConsoleUI
             }
 
             return state;
+        }
+
+        internal Enums.eVehicleStatus GetNewState()
+        {
+            Enums.eVehicleStatus state;
+            while (true)
+            {
+                System.Console.WriteLine("Please enter the new state:");
+                System.Console.WriteLine("1. InRepair");
+                System.Console.WriteLine("2. Fixed");
+                System.Console.WriteLine("3. Paid");
+                string UserInput = Console.ReadLine();
+                if (UserInput == "1")
+                {
+                    state = Enums.eVehicleStatus.InRepair;
+                    break;
+                }
+                else if (UserInput == "2")
+                {
+                    state = Enums.eVehicleStatus.Fixed;
+                    break;
+                }
+                else if (UserInput == "3")
+                {
+                    state = Enums.eVehicleStatus.Paid;
+                    break;
+                }
+                else
+                {
+                    System.Console.WriteLine("Invalid input. Please enter 1, 2, or 3.");
+                }
+            }
+            return state;
+        }
+
+        internal void SuccessMessage()
+        {
+            Console.WriteLine("Operation successfull!");
         }
     }
 }

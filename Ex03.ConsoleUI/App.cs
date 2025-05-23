@@ -64,16 +64,17 @@ namespace Ex03.ConsoleUI
                             plates = m_GarageManager.GetLicensePlatesByStatus(state);
                         }
 
-                        m_AppUI.DisplayLicensePlates(plates);
+                        m_AppUI.DisplayData(plates);
                         m_CurrentState = Enums.eAppState.Menu;
                         Console.ReadLine();
                         break;
 
                     case Enums.eAppState.UpdateVehicleStatus:
-                        //Vehicle ModifiedVehicle
-                        //m_GarageManager.ModifyVehicleStatus(m_AppUI.GetLicenseID(), m_AppUI.GetNewState());
-                        //m_AppUI.ShowVehicleStatus(); will be garage manager function
+                        m_AppUI.DisplayData(m_GarageManager.GetAllLicensePlates());
+                        m_GarageManager.ModifyVehicleStatus(m_AppUI.GetLicenseID(), m_AppUI.GetNewState()); 
+                        m_AppUI.SuccessMessage();
                         m_CurrentState = Enums.eAppState.Menu;
+                        Console.ReadLine();
                         break;
 
                     case Enums.eAppState.InflateTires:
@@ -82,17 +83,20 @@ namespace Ex03.ConsoleUI
                         break;
 
                     case Enums.eAppState.RefuelVehicle:
-                        m_GarageManager.RefuelVehicle(m_AppUI.GetLicenseID(), m_AppUI.GetFuelType(),m_AppUI.GetEnergySourceAmount()); // needs to be changed
+                        //m_GarageManager.RefuelVehicle(m_AppUI.GetLicenseID(), m_AppUI.GetFuelType(),m_AppUI.GetEnergySourceAmount()); // needs to be changed
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
                     case Enums.eAppState.RechargeElectricVehicle:
-                        m_GarageManager.RechargeElectricVehicle(m_AppUI.GetLicenseID(),m_AppUI.GetFuelType(),m_AppUI.GetEnergySourceAmount()); // needs to be changed
+                        //m_GarageManager.RechargeElectricVehicle(m_AppUI.GetLicenseID(),m_AppUI.GetFuelType(),m_AppUI.GetEnergySourceAmount()); // needs to be changed
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
                     case Enums.eAppState.ShowAllVehicles:
-                        m_GarageManager.ShowAllVehicles();  // needs to be changed
+                        m_AppUI.DisplayData(m_GarageManager.GetAllLicensePlates());
+                        List<string> dataInfo = m_GarageManager.GetSpecificVehicleData(m_AppUI.GetLicenseID());
+                        m_AppUI.DisplayData(dataInfo);
+                        Console.ReadLine();
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
                 }
