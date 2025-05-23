@@ -60,23 +60,23 @@ namespace Ex03.ConsoleUI
 
                     case Enums.eAppState.UpdateVehicleStatus:
                         //Vehicle ModifiedVehicle
-                        m_GarageManager.ModifyVehicleStatus(m_AppUI.GetLicenseID());
+                        m_GarageManager.ModifyVehicleStatus(m_AppUI.GetLicenseID(), m_AppUI.GetNewState());
                         //m_AppUI.ShowVehicleStatus(); will be garage manager function
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
                     case Enums.eAppState.InflateTires:
-                        m_GarageManager.InflateTires(m_AppUI.GetLicenseID());// needs to be changed
+                        m_GarageManager.InflateTires(m_AppUI.GetLicenseID());
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
                     case Enums.eAppState.RefuelVehicle:
-                        m_GarageManager.RefuelVehicle(m_AppUI.GetLicenseID()); // needs to be changed
+                        m_GarageManager.RefuelVehicle(m_AppUI.GetLicenseID(), m_AppUI.GetFuelType(), m_AppUI.GetFuelAmount()); // needs to be changed
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 
                     case Enums.eAppState.RechargeElectricVehicle:
-                        m_GarageManager.RechargeElectricVehicle(m_AppUI.GetLicenseID()); // needs to be changed
+                        m_GarageManager.RechargeElectricVehicle(m_AppUI.GetLicenseID(), m_AppUI.GetFuelAmount()); // needs to be changed
                         m_CurrentState = Enums.eAppState.Menu;
                         break;
 

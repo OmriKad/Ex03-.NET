@@ -117,8 +117,7 @@ namespace Ex03.GarageLogic
         public void RefuelVehicle(string LicenseId)
         {
             Vehicle vehicle = r_LoadedVehicles[LicenseId];
-            //refuel needed
-
+            vehicle.m_EnergyLeft = (100 - vehicle.m_EnergyLeft);
         }
 
         public void ShowAllVehicles()
