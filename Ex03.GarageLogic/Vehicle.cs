@@ -11,6 +11,7 @@ namespace Ex03.GarageLogic
     {
         public readonly string m_ModelName;
         public readonly string m_LicenseId;
+
         public abstract float m_EnergyLeft { get; }
 
         protected List<Wheel> m_Wheels;
