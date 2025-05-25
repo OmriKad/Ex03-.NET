@@ -76,8 +76,8 @@ namespace Ex03.ConsoleUI
                             }
 
                             m_AppUI.DisplayData(plates);
+                            m_AppUI.SuccessMessage();
                             m_CurrentState = Enums.eAppState.Menu;
-                            Console.ReadLine();
                             break;
 
                         case Enums.eAppState.UpdateVehicleStatus:
@@ -89,6 +89,7 @@ namespace Ex03.ConsoleUI
 
                         case Enums.eAppState.InflateTires:
                             m_GarageManager.InflateTires(m_AppUI.GetLicenseID());
+                            m_AppUI.SuccessMessage();
                             m_CurrentState = Enums.eAppState.Menu;
                             break;
 
@@ -106,7 +107,7 @@ namespace Ex03.ConsoleUI
                             m_AppUI.DisplayData(m_GarageManager.GetAllLicensePlates());
                             List<string> dataInfo = m_GarageManager.GetSpecificVehicleData(m_AppUI.GetLicenseID());
                             m_AppUI.DisplayData(dataInfo);
-                            Console.ReadLine();
+                            m_AppUI.SuccessMessage();
                             m_CurrentState = Enums.eAppState.Menu;
                             break;
                     }

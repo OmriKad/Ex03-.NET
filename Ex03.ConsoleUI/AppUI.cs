@@ -266,7 +266,7 @@ namespace Ex03.ConsoleUI
 
         public string GetColor()
         {
-            Console.WriteLine("Please enter the color of the vehicle:");
+            Console.WriteLine("Please enter the color of the vehicle: (Yellow, White, Black, or Silver)");
             string color = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(color) || !Enum.IsDefined(typeof(Enums.eVehicleColor), color))
             {
@@ -278,14 +278,19 @@ namespace Ex03.ConsoleUI
 
         public string GetNumOfDoors()
         {
-            Console.WriteLine("Please enter the number of doors:");
-            string numOfDoors = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(numOfDoors) || !Enum.IsDefined(typeof(Enums.eNumOfDoors), numOfDoors))
+            Console.WriteLine("Please enter the number of doors (2, 3, 4, or 5):");
+            string numOfDoorsInput = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(numOfDoorsInput) || !int.TryParse(numOfDoorsInput, out int numOfDoorsInt))
+            {
+                throw new ArgumentException("Number of doors must be a valid number.");
+            }
+
+            if (!Enum.IsDefined(typeof(Enums.eNumOfDoors), numOfDoorsInt))
             {
                 throw new ValueRangeException((float)Enums.eNumOfDoors.Two, (float)Enums.eNumOfDoors.Five);
             }
 
-            return numOfDoors;
+            return ((Enums.eNumOfDoors)numOfDoorsInt).ToString();
         }
 
         public string GetCanCarryDangerousMaterials()
