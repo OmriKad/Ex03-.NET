@@ -19,7 +19,7 @@ namespace Ex03.GarageLogic
         {
             if (m_CurrentFuelAmount + i_Amount > r_MaxFuelAmount)
             {
-                throw new ValueRangeException(0f, r_MaxFuelAmount);
+                throw new ValueRangeException(0f, Math.Abs(r_MaxFuelAmount - m_CurrentFuelAmount));
             }
 
             if(i_FuelType != r_FuelType)

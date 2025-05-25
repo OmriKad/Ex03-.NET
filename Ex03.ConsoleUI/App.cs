@@ -44,7 +44,7 @@ namespace Ex03.ConsoleUI
                             }
 
                             m_GarageManager.LoadDatabase(dbPath);
-
+                            m_AppUI.SuccessMessage();
                             m_CurrentState = Enums.eAppState.Menu;
                             break;
 
@@ -88,25 +88,30 @@ namespace Ex03.ConsoleUI
                             break;
 
                         case Enums.eAppState.InflateTires:
+                            m_AppUI.DisplayData(m_GarageManager.GetAllLicensePlates());
                             m_GarageManager.InflateTires(m_AppUI.GetLicenseID());
                             m_AppUI.SuccessMessage();
                             m_CurrentState = Enums.eAppState.Menu;
                             break;
 
                         case Enums.eAppState.RefuelVehicle:
-                            //m_GarageManager.RefuelVehicle(m_AppUI.GetLicenseID(), m_AppUI.GetFuelType(),m_AppUI.GetEnergySourceAmount()); // needs to be changed
+                            m_AppUI.DisplayData(m_GarageManager.GetAllLicensePlates());
+                            m_GarageManager.RefuelVehicle(m_AppUI.GetLicenseID(), m_AppUI.GetFuelType(), m_AppUI.GetFuelAmount());
+                            m_AppUI.SuccessMessage();
                             m_CurrentState = Enums.eAppState.Menu;
                             break;
 
                         case Enums.eAppState.RechargeElectricVehicle:
-                            //m_GarageManager.RechargeElectricVehicle(m_AppUI.GetLicenseID(),m_AppUI.GetFuelType(),m_AppUI.GetEnergySourceAmount()); // needs to be changed
+                            m_AppUI.DisplayData(m_GarageManager.GetAllLicensePlates());
+                            m_GarageManager.RechargeElectricVehicle(m_AppUI.GetLicenseID(), m_AppUI.GetElectricityAmount());
+                            m_AppUI.SuccessMessage();
                             m_CurrentState = Enums.eAppState.Menu;
                             break;
 
                         case Enums.eAppState.ShowAllVehicles:
                             m_AppUI.DisplayData(m_GarageManager.GetAllLicensePlates());
-                            List<string> dataInfo = m_GarageManager.GetSpecificVehicleData(m_AppUI.GetLicenseID());
-                            m_AppUI.DisplayData(dataInfo);
+                            string dataInfo = m_GarageManager.GetSpecificVehicleData(m_AppUI.GetLicenseID());
+                            Console.WriteLine(dataInfo);
                             m_AppUI.SuccessMessage();
                             m_CurrentState = Enums.eAppState.Menu;
                             break;

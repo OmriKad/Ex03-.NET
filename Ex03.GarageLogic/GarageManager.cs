@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Ex03.GarageLogic.Enums;
 
 namespace Ex03.GarageLogic
 {
@@ -42,13 +43,10 @@ namespace Ex03.GarageLogic
         public void InflateTires(string LicenseId)
         {
             Vehicle vehicle = r_LoadedVehicles[LicenseId];
-            //foreach (Wheel wheel in vehicle.m_Wheels)
-            //{
-                
-
-            //}
-
-
+            foreach (Wheel wheel in vehicle.m_Wheels)
+            {
+                wheel.Inflate(wheel.m_MaxAirPressure - wheel.m_CurrentAirPressure);
+            }
         }
 
         public void LoadDatabase(string FilePath)
@@ -81,16 +79,55 @@ namespace Ex03.GarageLogic
             vehicle.m_Status = i_VehicleStatus;
         }
 
-        public void RechargeElectricVehicle(string LicenseId, Enums.eFuelType FuelType, int FuelAmount)
+        public void RechargeElectricVehicle(string i_LicenseId, float i_ChargeAmount)
         {
-            Vehicle vehicle = r_LoadedVehicles[LicenseId];
-            //recharge needed
+            if (!CheckIfPlateInGarage(i_LicenseId))
+            {
+                throw new ArgumentException($"Vehicle with license plate {i_LicenseId} not found in the garage.");
+            }
+
+            Vehicle vehicle = r_LoadedVehicles[i_LicenseId];
+            if (vehicle is FuelMotorcycle || vehicle is FuelCar || vehicle is Truck)
+            {
+                throw new ArgumentException("Fuel vehicles cannot be refueled with electricity.");
+            }
+
+
+            if (i_ChargeAmount <= 0)
+            {
+                throw new ArgumentException("Electricity amount must be greater than zero.");
+            }
+
+
+            vehicle.FillPowerSource(i_ChargeAmount, Enums.eFuelType.None);
         }
 
-        public void RefuelVehicle(string LicenseId,Enums.eFuelType FuelType,int FuelAmount)
+        public void RefuelVehicle(string i_LicenseId, Enums.eFuelType i_FuelType, float i_FuelAmount)
         {
-            Vehicle vehicle = r_LoadedVehicles[LicenseId];
-            vehicle.m_EnergyLeft = (100 - vehicle.m_EnergyLeft);
+            if (!CheckIfPlateInGarage(i_LicenseId))
+            {
+                throw new ArgumentException($"Vehicle with license plate {i_LicenseId} not found in the garage.");
+            }
+
+            Vehicle vehicle = r_LoadedVehicles[i_LicenseId];
+            if (vehicle is ElectricCar || vehicle is ElectricMotorcycle)
+            {
+                throw new ArgumentException("Electric vehicles cannot be refueled with fuel.");
+            }
+
+
+            if (i_FuelAmount <= 0)
+            {
+                throw new ArgumentException("Fuel amount must be greater than zero.");
+            }
+
+            if (!Enum.IsDefined(typeof(Enums.eFuelType), i_FuelType))
+            {
+                throw new ArgumentException("Invalid fuel type. Supported types are: Octan95, Octan96, Soler.");
+            }
+
+
+            vehicle.FillPowerSource(i_FuelAmount, i_FuelType);
         }
 
         public bool CheckIfPlateInGarage(string i_Plate)
@@ -164,26 +201,14 @@ namespace Ex03.GarageLogic
             r_LoadedVehicles.Add(licensePlate, vehicle);
         }
 
-        public List<string> GetSpecificVehicleData(string i_Plate)
+        public string GetSpecificVehicleData(string i_Plate)
         {
-            List<string> vehicleData = new List<string>();
-
-            if (r_LoadedVehicles.ContainsKey(i_Plate))
-            {
-                Vehicle vehicle = r_LoadedVehicles[i_Plate];
-                vehicleData.Add($"License Plate: {vehicle.m_LicenseId}");
-                vehicleData.Add($"Model Name: {vehicle.m_ModelName}");
-                vehicleData.Add($"Owner Name: {vehicle.m_Owner.m_Name}");
-                vehicleData.Add($"Owner Phone: {vehicle.m_Owner.m_PhoneNumber}");
-                vehicleData.Add($"Vehicle Status: {vehicle.m_Status}");
-                vehicleData.Add($"Energy Left: {vehicle.m_EnergyLeft}");
-            }
-            else
+            if (!r_LoadedVehicles.ContainsKey(i_Plate))
             {
                 throw new ArgumentException($"Vehicle with license plate {i_Plate} not found in the garage.");
             }
-
-            return vehicleData;
+            
+            return r_LoadedVehicles[i_Plate].GetVehicleDetails();
         }
     }
 }

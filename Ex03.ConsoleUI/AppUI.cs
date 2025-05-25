@@ -168,6 +168,50 @@ namespace Ex03.ConsoleUI
             return modelName;
         }
 
+        public Enums.eFuelType GetFuelType()
+        {
+            Console.WriteLine("Please enter the fuel type (Octan95, Octan96, Octan98, Soler):");
+            string fuelTypeInput = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(fuelTypeInput) || !Enum.TryParse(fuelTypeInput, out Enums.eFuelType fuelType) || !Enum.IsDefined(typeof(Enums.eFuelType), fuelType))
+            {
+                throw new ArgumentException("Invalid fuel type. Must be one of: Octan95, Octan96, Octan98, Soler.");
+            }
+
+            return fuelType;
+        }
+
+        public float GetFuelAmount()
+        {
+            Console.WriteLine("Please enter the fuel amount:");
+            string fuelAmount = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(fuelAmount) || !float.TryParse(fuelAmount, out float floatFuelAmount))
+            {
+                throw new ArgumentException("Fuel amount must be a valid number.");
+            }
+            if (floatFuelAmount < 0 || floatFuelAmount > 135)
+            {
+                throw new ValueRangeException(0f, 135f);
+            }
+
+            return floatFuelAmount;
+        }
+
+        public float GetElectricityAmount()
+        {
+            Console.WriteLine("Please enter the electricity amount:");
+            string electricityAmount = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(electricityAmount) || !float.TryParse(electricityAmount, out float floatElectricityAmount))
+            {
+                throw new ArgumentException("Electricity amount must be a valid number.");
+            }
+            if (floatElectricityAmount < 0 || floatElectricityAmount > 4.8f)
+            {
+                throw new ValueRangeException(0f, 4.8f);
+            }
+
+            return floatElectricityAmount;
+        }
+
         public string GetEnergyPrecentage()
         {
             Console.WriteLine("Please enter energy precentage:");

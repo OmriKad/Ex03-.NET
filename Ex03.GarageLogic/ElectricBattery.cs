@@ -1,4 +1,6 @@
-﻿namespace Ex03.GarageLogic
+﻿using System;
+
+namespace Ex03.GarageLogic
 {
     public class ElectricBattery
     {
@@ -13,7 +15,7 @@
         {
             if (m_CurrentChargeAmount + i_Amount > r_MaxChargeAmount)
             {
-                throw new ValueRangeException(0f, r_MaxChargeAmount);
+                throw new ValueRangeException(0f, Math.Abs(r_MaxChargeAmount - m_CurrentChargeAmount));
             }
             m_CurrentChargeAmount += i_Amount;
         }

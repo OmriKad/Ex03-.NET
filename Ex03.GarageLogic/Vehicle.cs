@@ -54,5 +54,8 @@ namespace Ex03.GarageLogic
                 wheel.Inflate(i_TirePressure);
             }
         }
+
+        public abstract string GetVehicleDetails();
+        public abstract void FillPowerSource(float i_Amount, Enums.eFuelType i_FuelType);
     }
 }
